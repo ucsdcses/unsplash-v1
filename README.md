@@ -1,7 +1,14 @@
 ## Unsplash-v1
 
 
-### Development
+### Development Instructions
 
-```npm install
-   npm run start```
+1. Install `Node.js` and `npm`
+
+2. Execute the following in the terminal/Node REPL
+
+```
+cd unsplash-v1
+npm install
+npm run start
+```
