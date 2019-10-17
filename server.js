@@ -35,11 +35,11 @@ function getPublicUrl(bucket, blob) {
 
 
 app.get('/', function (req, res) {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/public/html/index.html');
 });
 
 app.get('/upload', function (req, res) {
-  res.sendFile(__dirname + '/upload.html');
+  res.sendFile(__dirname + '/public/html/upload.html');
 });
 
 /**
@@ -50,20 +50,25 @@ app.get('/upload', function (req, res) {
  */
 app.get('/photos', async function (req, res) {
   // Lists files in the bucket present in the google cloud bucket
-  const [files] = await googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET).getFiles();
+  try {
+    const [files] = await googleCloudStorage.bucket(process.env.GCLOUD_STORAGE_BUCKET).getFiles();
 
-  if (files == null) {  // check if the returned files are valid
-    res.status(400).send([]);
+    if (files == null) {  // check if the returned files are valid
+      res.status(400).send([]);
+    }
+
+    let imgUrls = []
+    // loop through the files to get file names
+    for (let file of files) {
+      imgUrls.push(getPublicUrl(bucket, file));
+    }
+
+    // send these imgUrls over to the browser as a response
+    res.status(200).send(imgUrls);
+  } catch (err) {
+    console.log('Error: ', err);
+    res.send(404).send("Error: Could not fetch photos from google cloud storage");  // not found error
   }
-
-  let imgUrls = []
-  // loop through the files to get file names
-  for (let file of files) {
-    imgUrls.push(getPublicUrl(bucket, file));
-  }
-
-  // send these imgUrls over to the browser as a response
-  res.status(200).send(imgUrls);
 });
 
 /**
