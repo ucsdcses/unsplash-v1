@@ -12,7 +12,7 @@ body {
   padding: 32px;
 }
 
-
+/* Flexbox reference: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox */
 .row {
   display: flex;
   flex-wrap: wrap;

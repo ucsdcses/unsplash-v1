@@ -110,7 +110,7 @@ app.post("/upload", m.single("file"), function (req, res, next) {
     // Make the image public to the web (since we'll be displaying it in browser)
     blob.makePublic().then(() => {
       console.log(`File successfully uploaded to: ${publicUrl}`);
-      res.status(200).send([publicUrl]);
+      res.redirect('/');  // redirect to the home page upon successful upload
     });
 
   });
