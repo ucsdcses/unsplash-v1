@@ -1,6 +1,6 @@
 ## Unsplash-v1
 
-[![Edit unsplash-v1](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/unsplash-v1-1q24d?fontsize=14)
+[![Edit unsplash-v1](https://codesandbox.io/static/img/play-codesandbox.svg)](https://codesandbox.io/s/github/ucsdcses/unsplash-v1/tree/master/?fontsize=14)
 
 ### Local Development Instructions
 
